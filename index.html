@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+       
+
+        body {
+            display: flex;
+            justify-content: center;
+        }
+        p {
+            margin: 0;
+        }
+
+        .banner {
+            width: 80vw;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            background-color: rgb(234, 217, 116);
+            padding: 6px 10px;
+            background: linear-gradient(to right, rgb(255, 225, 0), orange);
+        }
+
+        p {
+            font-weight: 600;
+            display: flex;
+        }
+
+        p img {
+            height: 25px;
+            left: -10px;
+            position: relative;
+        }
+        #countdown{
+                font-size: 2rem;
+            }
+
+
+        @media screen and (max-width: 700px) {
+            .banner {
+                border: 1px solid #ffdb1b;
+                background: rgb(243 223 142);
+                flex-direction: column;
+
+
+            }
+
+            .offer {
+                background-color: #ffb63f;
+                width: 100%;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                border-radius: 15px;
+            }
+           
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <p><img src="old_clock.svg" alt="">Limited Time Offer</p>
+
+        <div id="countdown">Ends In: 00:00:00</div>
+        <div class="offer">
+            <p>GET 10% OFF &nbsp; Use Code: EXAMSTART</p>
+        </div>
+    </div>
+    <script src="countdown.js"></script>
+</body>
+
+<script>
+
+
+    // Set the initial countdown time in seconds (e.g., 1 hour = 3600 seconds)
+    let countdownTime = 12 * 3600;
+
+    function startCountdown() {
+        let countdownElement = document.getElementById('countdown');
+        let timeLeft = countdownTime;
+
+        function updateCountdown() {
+            let hours = Math.floor(timeLeft / 3600);
+            let minutes = Math.floor((timeLeft % 3600) / 60);
+            let seconds = timeLeft % 60;
+
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            countdownElement.innerHTML = `Ends In: ${hours}:${minutes}:${seconds}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                timeLeft = countdownTime; // Reset the countdown
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+    }
+
+    window.onload = startCountdown;
+</script>
+
+</html>
